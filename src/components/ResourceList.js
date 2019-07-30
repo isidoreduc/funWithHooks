@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import useResourceHook from './useResourceHook';
 
 const ResourceList = ({ category }) => {
-    const [categories, setCategories] = useState([]);
 
-    // the arrow function argument is called only when the second array argument - category element(the props) is different
-    // in javascript you can define an annonymous function and immediately call it - example:
-    //                  (() => console.log('hi'))()
-    useEffect(
-        () => { // first argument
-            (async (cat) => { // defining annonymous function that takes an argument
-                const response = await axios.get(`http://jsonplaceholder.typicode.com/${cat}`);
-                setCategories(response.data);
-            })(category); // immediately calling the annonymous function
-        },
-        [category] // second argument
-    );
+    const categories = useResourceHook(category);
 
-    return <div>{categories.length}</div>
+    const renderList = categories.map(cat => {
+        return (
+            <li key={cat.id}>
+                {cat.title}
+            </li>
+        )
+    });
+
+    return <div>{renderList}</div>
+
 }
 
 export default ResourceList;
