@@ -20,3 +20,32 @@ const useResourceHook = (res) => {
 }
 
 export default useResourceHook
+
+
+
+
+
+
+
+
+
+// alternative syntax, cleaner, but more verbious
+// const ResourceList = ({ category }) => {
+//     const [categories, setCategories] = useState([]);
+
+//     const getData = async (cat) => {
+//         const response = await axios.get(`http://jsonplaceholder.typicode.com/${cat}`);
+//         setCategories(response.data);
+//     }
+
+//     useEffect(
+//         () => { 
+//             getData(category);
+//         },
+//         [category] // second argument
+//     );
+
+//     return <div>{categories.length}</div>
+// }
+
+// export default ResourceList;
