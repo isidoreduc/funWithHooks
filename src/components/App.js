@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ResourceList from './ResourceList';
 
-class App extends React.Component {
-  state = {
-    resource: 'posts'
-  }
-
-  render() {
-    return (
-      <div className="ui container">
-        <div>
-          <button onClick={() => this.setState({ resource: 'posts' })}>Posts</button>
-          <button onClick={()=> this.setState({resource: 'todos'})}>Todos</button>
-        </div>
+const App = () => {
+  // array destructuring. useState() returns an array with 2 elements, a default value and a setter
+  const [category, setCategory] = useState('posts');
+  return (
+    <div className="ui container" style={{ marginTop: '20px' }}>
+      <div>
+        <button className='ui button primary'
+          onClick={() => setCategory('posts')}>
+          Posts
+          </button>
+        <button className='ui button primary'
+          onClick={() => setCategory('todos')}>
+          Todos
+          </button>
       </div>
-    );
-  }
+      <ResourceList category={category} />
+    </div>
+  );
 }
+
 
 
 export default App;
